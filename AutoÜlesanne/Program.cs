@@ -75,14 +75,26 @@ namespace AutoÜlesanne
             #region Võimsaim ja nõrgeim
 
             var Võimsaim = autod.Max(x => x.KW);
-            var Nõrgeim = autod.Min(x => x.KW);
+            var VõimsaimKoosMudeliga = (from auto in autod
+                                        where auto.KW == Võimsaim
+                                        select auto).ToList();
 
-            foreach (var auto in Võimsaim)
+            foreach (var auto in VõimsaimKoosMudeliga)
             {
-                Console.WriteLine();
+                Console.WriteLine(auto.Mudel + " KW: " + auto.KW);
             }
 
             Console.WriteLine("Võimsaim: " + Võimsaim);
+
+            var Nõrgeim = autod.Min(x => x.KW);
+            var NõrgeimKoosMudeliga = (from auto in autod
+                                       where auto.KW == Nõrgeim
+                                       select auto).ToList();
+
+            foreach (var auto in NõrgeimKoosMudeliga)
+            {
+                Console.WriteLine(auto.Mudel + " KW: " + auto.KW);
+            }
             Console.WriteLine("Nõrgeim: " + Nõrgeim);
 
             #endregion
